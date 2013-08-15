@@ -11,6 +11,7 @@ end
 
 namespace "has_secure_attribute" do
   namespace "db" do
+    desc "Create the database that is needed for testing (database name: has_secure_attribute_test)"
     task :create do |t|
       begin
         HasSecureAttribute::DbHelper.new.connect_to_server
@@ -20,14 +21,17 @@ namespace "has_secure_attribute" do
       end
     end
 
+    desc "Migrate in order to be able to run the tests"
     task :migrate do |t|
       CreateTestModelWithAttributes.new.up
     end
 
+    desc "Rollback migrations that are there for the tests to run successfully"
     task :rollback do |t|
       CreateTestModelWithAttributes.new.down
     end
 
+    desc "Drop database that is needed to run tests"
     task :drop do |t|
       begin
         HasSecureAttribute::DbHelper.new.connect_to_database
@@ -39,6 +43,7 @@ namespace "has_secure_attribute" do
   end
 end
 
+desc "Will create the database necessary to run all the tests and then run all the tests"
 task :default => ["has_secure_attribute:db:drop", "has_secure_attribute:db:create", "has_secure_attribute:db:migrate", :spec]
 
 
