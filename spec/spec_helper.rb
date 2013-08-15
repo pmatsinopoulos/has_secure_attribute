@@ -6,6 +6,7 @@ HasSecureAttribute::DbHelper.new.connect_to_database
 require File.expand_path("../../lib/active_model/secure_attribute/has_secure_attribute", __FILE__)
 require File.expand_path("../models/test_model_with_attribute", __FILE__)
 require File.expand_path("../models/test_model_with_attribute_no_validation", __FILE__)
+require File.expand_path("../models/test_model_with_attribute_protect_setter_for_digest", __FILE__)
 
 require 'factory_girl'
 FactoryGirl.find_definitions

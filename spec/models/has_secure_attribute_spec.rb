@@ -63,20 +63,12 @@ describe TestModelWithAttribute do
     subject.save!
 
     # change the security_answer_digest to verify the test
-    subject.send :security_answer_digest=, ''
+    subject.security_answer_digest = ''
 
     subject.save!
 
     subject.reload
     subject.security_answer_digest.should be_blank
-  end
-
-  it 'should not allow to call security answer digest directly if protect setter for digest is true' do
-    pending
-  end
-
-  it 'should allow to call security answer digest directly if protect setter for digest is false' do
-    pending
   end
 
   it 'should allow to call security answer digest directly if protect setter for digest is not given as option' do
@@ -116,7 +108,7 @@ end
 describe TestModelWithAttributeNoValidation do
   it { should respond_to(:security_answer)               }
   it { should respond_to(:security_answer=)              }
-  it { should_not  respond_to(:security_answer_confirmation)  }
+  it { should_not respond_to(:security_answer_confirmation)  }
   it { should_not respond_to(:security_answer_confirmation=) }
   it { should respond_to(:authenticate_security_answer)  }
 
@@ -127,7 +119,7 @@ describe TestModelWithAttributeNoValidation do
     subject.errors[:security_answer].should be_blank
   end
 
-  it 'should require security answer confirmation if security answer given ' do
+  it 'should not require security answer confirmation if security answer given ' do
     subject.security_answer = 'hello there'
     subject.valid?
     subject.errors[:security_answer_confirmation].should be_blank
@@ -162,44 +154,12 @@ describe TestModelWithAttributeNoValidation do
     subject.reload
     subject.security_answer_digest.should be_blank
   end
+end
 
-  it 'should not allow to call security answer digest directly if protect setter for digest is true' do
-    pending
-  end
-
-  it 'should allow to call security answer digest directly if protect setter for digest is false' do
-    pending
-  end
-
-  it 'should allow to call security answer digest directly if protect setter for digest is not given as option' do
+describe TestModelWithAttributeProtectSetterForDigest do
+  it 'should not allow to call security answer digest directly' do
     lambda do
       subject.security_answer_digest = 'hello'
-    end.should_not raise_error
-  end
-
-  describe "#security_answer=" do
-    it 'should set the security answer and save it encrypted' do
-      tmwa = FactoryGirl.create :test_model_with_attribute_no_validation, security_answer: 'old answer'
-      tmwa.security_answer_digest.should_not be_blank
-      old_security_answer_digest = tmwa.security_answer_digest
-
-      tmwa.security_answer = 'new answer'
-      tmwa.instance_variable_get(:@security_answer).should == 'new answer'
-      tmwa.save!
-      tmwa.security_answer_digest.should_not be_blank
-      tmwa.security_answer_digest.should_not == old_security_answer_digest
-    end
-  end
-
-  describe '#authenticate_security_answer' do
-    it 'should return subject if security answer given matches the one stored' do
-      tmwa = FactoryGirl.create :test_model_with_attribute_no_validation, security_answer: 'some answer'
-      tmwa.authenticate_security_answer('some answer').should eq tmwa
-    end
-
-    it 'should return false if security answer given does not match the one stored' do
-      tmwa = FactoryGirl.create :test_model_with_attribute_no_validation, security_answer: 'some answer'
-      tmwa.authenticate_security_answer('some other answer').should be_false
-    end
+    end.should raise_error NoMethodError
   end
 end
