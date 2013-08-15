@@ -21,12 +21,11 @@ module ActiveModel
       def has_secure_attribute(meth, *args, &block)
         attribute_sym = meth.to_sym
         attr_reader attribute_sym # setter is defined later on
-        options = {validations: true, protect_setter_for_digest: false, case_sensitive: true}
+        options = {validations: true, protect_setter_for_digest: false, case_sensitive: true, confirmation: true}
         options.merge! args[0] unless args.blank?
         if options[:validations]
-          validates attribute_sym,                          confirmation: true, if: lambda { |m| m.send(attribute_sym).present? }
-          validates attribute_sym,                          presence: true,     on: :create
-          validates "#{attribute_sym}_confirmation".to_sym, presence: true,     if: lambda { |m| m.send(attribute_sym).present? }
+          confirm attribute_sym if options[:confirmation]
+          validates attribute_sym, presence: true,     on: :create
           before_create { raise "#{attribute_sym}_digest missing on new record" if send("#{attribute_sym}_digest").blank? }
         end
 
@@ -34,6 +33,11 @@ module ActiveModel
         protect_setter_for_digest(attribute_sym) if options[:protect_setter_for_digest]
 
         define_authenticate_method(attribute_sym, options)
+      end
+
+      def confirm(attribute_sym)
+        validates attribute_sym,                          confirmation: true, if: lambda { |m| m.send(attribute_sym).present? }
+        validates "#{attribute_sym}_confirmation".to_sym, presence: true,     if: lambda { |m| m.send(attribute_sym).present? }
       end
 
       def define_setter(attribute_sym, options)
@@ -60,6 +64,7 @@ module ActiveModel
       end
 
       protected :has_secure_attribute
+      protected :confirm
       protected :define_setter
       protected :protect_setter_for_digest
       protected :define_authenticate_method

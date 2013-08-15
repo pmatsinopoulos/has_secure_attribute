@@ -171,3 +171,14 @@ describe TestModelWithAttributeWithCaseSensitive do
     t.authenticate_security_answer('answer').should eq t
   end
 end
+
+describe TestModelWithAttributeDisableConfirmation do
+  it { should_not respond_to(:security_answer_confirmation)  }
+  it { should_not respond_to(:security_answer_confirmation=) }
+  it 'should allow to create and save without any confirmation on security answer' do
+    t = FactoryGirl.create :test_model_with_attribute_disable_confirmation, security_answer: 'Answer'
+    t.save!
+    t.authenticate_security_answer('another answer').should be_false
+    t.authenticate_security_answer('Answer').should eq t
+  end
+end
