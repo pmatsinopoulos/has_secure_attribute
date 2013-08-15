@@ -16,3 +16,4 @@
 .rvmrc
 .idea
 log
+*.gem
