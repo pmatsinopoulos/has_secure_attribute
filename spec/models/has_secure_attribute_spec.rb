@@ -163,3 +163,11 @@ describe TestModelWithAttributeProtectSetterForDigest do
     end.should raise_error NoMethodError
   end
 end
+
+describe TestModelWithAttributeWithCaseSensitive do
+  it 'should authenticate even if answer is of different case' do
+    t = FactoryGirl.create :test_model_with_attribute_with_case_sensitive, security_answer: 'Answer', security_answer_confirmation: 'Answer'
+
+    t.authenticate_security_answer('answer').should eq t
+  end
+end

@@ -1,7 +1,7 @@
 `has_secure_attribute`
 ======================
 
-Why have `has_secure_password` and not any attribute that you want. I believe that, quite often, we want to one-way encrypt one attribute and authenticate against its value, and this is not only the `password` case.
+Why have `has_secure_password` and not any attribute that you want? I believe that, quite often, we want to one-way encrypt one attribute and authenticate against its value, and this is not only the `password` case.
 
 Requires
 --------
@@ -35,6 +35,8 @@ In the above example:
   * It creates a presence validation on `security_answer_confirmation` but only if `security_answer` has been given.
   * It raises an exception if `security_answer_digest` is empty on create.
 * It defines the method `authenticate_security_answer(answer_to_authenticate)` which returns `false` if the answer given does not correspond to the saved digest, or returns the object instance itself if it does.
+
+__Case Insensitive Values__: you can pass `case_insensitive => false` if you want to handle values that match even if they differ on case. Then, `answer` will match `Answer`, for example.
 
 Do you want to test it?
 ------------------------

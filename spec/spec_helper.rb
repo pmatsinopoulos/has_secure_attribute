@@ -7,6 +7,7 @@ require File.expand_path("../../lib/active_model/secure_attribute/has_secure_att
 require File.expand_path("../models/test_model_with_attribute", __FILE__)
 require File.expand_path("../models/test_model_with_attribute_no_validation", __FILE__)
 require File.expand_path("../models/test_model_with_attribute_protect_setter_for_digest", __FILE__)
+require File.expand_path("../models/test_model_with_attribute_with_case_sensitive", __FILE__)
 
 require 'factory_girl'
 FactoryGirl.find_definitions
