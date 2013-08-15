@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 module ActiveModel
   module SecureAttribute
     extend ActiveSupport::Concern
