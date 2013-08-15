@@ -37,6 +37,7 @@ In the above example:
 * It defines the method `authenticate_security_answer(answer_to_authenticate)` which returns `false` if the answer given does not correspond to the saved digest, or returns the object instance itself if it does.
 
 __Case Insensitive Values__: you can do `has_secure_security_answer case_insensitive: false` if you want to handle values that match even if they differ on case. Then, `answer` will match `Answer`, for example.
+
 __Do not use confirmation__: you can do `has_secure_security_answer confirm: false` if you do not want to have confirmation attribute for the attribute you are securing.
 
 Do you want to test it?
