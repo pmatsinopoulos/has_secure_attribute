@@ -1,0 +1,1 @@
+require 'active_model/secure_attribute/has_secure_attribute'
