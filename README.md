@@ -20,8 +20,16 @@ or in your `Gemfile`
 Use it
 ------
 
+The attribute can be specified using either:
+
     class User < ActiveRecord::Base
       has_secure_security_answer
+    end
+
+or
+
+    class User < ActiveRecord::Base
+      has_secure :security_answer
     end
 
 In the above example:
