@@ -12,8 +12,8 @@ Gem::Specification.new do |s|
   s.email = ["panayotis@matsinopoulos.gr"]
   s.description = "Does what `has_secure_password` does, but for any attribute that you want. It does not have to be a `password` attribute. It may be for example `security_answer`"
   s.date = "2013-08-15"
-
-  s.files = Dir.glob("{lib,spec}/**/*") + %w(README.md MIT-LICENSE)
+  s.license = 'MIT'
+  s.files = Dir.glob("{lib,spec}/**/*") + %w(README.md MIT)
 
   s.homepage = "https://github.com/pmatsinopoulos/has_secure_attribute"
   s.require_paths = ["lib"]
