@@ -182,3 +182,19 @@ describe TestModelWithAttributeDisableConfirmation do
     t.authenticate_security_answer('Answer').should eq t
   end
 end
+
+describe TestModelWithAlternativeSyntax do
+  it { should respond_to(:username)               }
+  it { should respond_to(:username=)              }
+  it { should respond_to(:username_confirmation)  }
+  it { should respond_to(:username_confirmation=) }
+  it { should respond_to(:authenticate_username)  }
+
+  context "with no validation" do
+    it { should respond_to(:security_answer)               }
+    it { should respond_to(:security_answer=)              }
+    it { should_not respond_to(:security_answer_confirmation)  }
+    it { should_not respond_to(:security_answer_confirmation=) }
+    it { should respond_to(:authenticate_security_answer)  }
+  end
+end
