@@ -18,6 +18,10 @@ module ActiveModel
         end
       end
 
+      def has_secure(attr, opts={})
+        has_secure_attribute(attr, opts)
+      end
+
       def has_secure_attribute(meth, *args, &block)
         attribute_sym = meth.to_sym
         attr_reader attribute_sym # setter is defined later on
