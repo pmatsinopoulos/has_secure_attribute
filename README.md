@@ -34,7 +34,7 @@ or
 
 In the above example:
 
-* Your should have a `users` table that has one column: `security_answer_digest`.
+* You should have a `users` table that has one column: `security_answer_digest`.
 * It creates a reader: `security_answer`.
 * It creates a writer: `security_answer=(value)` which basically saves the security answer given into the database on column `security_answer_digest` but is saves it encrypted.
 * It adds some validations (if you want to avoid having these validations: `has_secure_security_answer validations: false`).
