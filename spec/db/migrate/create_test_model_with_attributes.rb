@@ -1,4 +1,4 @@
-class CreateTestModelWithAttributes < ActiveRecord::Migration
+class CreateTestModelWithAttributes < ActiveRecord::Migration[5.1]
   def up
     HasSecureAttribute::DbHelper.new.connect_to_database
     return if ActiveRecord::Base.connection.table_exists? :test_model_with_attributes

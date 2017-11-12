@@ -1,3 +1,5 @@
+require 'yaml'
+
 module HasSecureAttribute
   class DbHelper
     def connect_to_database

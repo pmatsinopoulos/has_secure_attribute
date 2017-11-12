@@ -100,7 +100,7 @@ describe TestModelWithAttribute do
 
     it 'should return false if security answer given does not match the one stored' do
       tmwa = FactoryGirl.create :test_model_with_attribute, security_answer: 'some answer', security_answer_confirmation: 'some answer'
-      tmwa.authenticate_security_answer('some other answer').should be_false
+      tmwa.authenticate_security_answer('some other answer').should be false
     end
   end
 end
@@ -178,7 +178,7 @@ describe TestModelWithAttributeDisableConfirmation do
   it 'should allow to create and save without any confirmation on security answer' do
     t = FactoryGirl.create :test_model_with_attribute_disable_confirmation, security_answer: 'Answer'
     t.save!
-    t.authenticate_security_answer('another answer').should be_false
+    t.authenticate_security_answer('another answer').should be false
     t.authenticate_security_answer('Answer').should eq t
   end
 end

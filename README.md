@@ -36,7 +36,7 @@ In the above example:
 
 * You should have a `users` table that has one column: `security_answer_digest`.
 * It creates a reader: `security_answer`.
-* It creates a writer: `security_answer=(value)` which basically saves the security answer given into the database on column `security_answer_digest` but is saves it encrypted.
+* It creates a writer: `security_answer=(value)` which basically saves the security answer given into the database on column `security_answer_digest` but it saves it encrypted.
 * It adds some validations (if you want to avoid having these validations: `has_secure_security_answer validations: false`).
   * It creates a confirmation validation on `security_answer` but only if `security_answer` is given (for confirmation validations see [this](http://http://guides.rubyonrails.org/active_record_validations.html#confirmation)).
   * It creates a presence validation on `security_answer` but only on create.
