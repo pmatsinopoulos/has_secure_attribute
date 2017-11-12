@@ -3,6 +3,7 @@ lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
 require 'has_secure_attribute/version'
+require 'date'
 
 Gem::Specification.new do |s|
   s.name = "has_secure_attribute"
@@ -11,7 +12,7 @@ Gem::Specification.new do |s|
   s.authors = ["Panayotis Matsinopoulos"]
   s.email = ["panayotis@matsinopoulos.gr"]
   s.description = "Does what `has_secure_password` does, but for any attribute that you want. It does not have to be a `password` attribute. It may be for example `security_answer`"
-  s.date = Time.now.to_date.to_s
+  s.date = DateTime.now.to_date.to_s
   s.license = 'MIT'
   s.files = Dir.glob("{lib,spec}/**/*") + %w(README.md MIT)
 
