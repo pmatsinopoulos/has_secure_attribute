@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    has_secure_attribute (1.0.0)
+    has_secure_attribute (1.0.1)
       activerecord (~> 5.1)
       bcrypt-ruby (~> 3.1)
 
