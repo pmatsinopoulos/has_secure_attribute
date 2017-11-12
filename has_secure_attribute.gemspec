@@ -25,6 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency("rake")
   s.add_development_dependency("rspec")
   s.add_development_dependency("mysql2")
-  s.add_development_dependency("factory_girl")
+  s.add_development_dependency("factory_bot")
   s.add_development_dependency("database_cleaner")
 end

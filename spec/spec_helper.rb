@@ -11,8 +11,8 @@ require File.expand_path("../models/test_model_with_attribute_with_case_sensitiv
 require File.expand_path("../models/test_model_with_attribute_disable_confirmation", __FILE__)
 require File.expand_path("../models/test_model_with_alternative_syntax", __FILE__)
 
-require 'factory_girl'
-FactoryGirl.find_definitions
+require 'factory_bot'
+FactoryBot.find_definitions
 require 'database_cleaner'
 
 RSpec.configure do |config|

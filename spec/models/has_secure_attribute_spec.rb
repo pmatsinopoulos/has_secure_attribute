@@ -41,7 +41,7 @@ describe TestModelWithAttribute do
   end
 
   it 'should require security answer digest on create' do
-    subject = FactoryGirl.build :test_model_with_attribute
+    subject = FactoryBot.build :test_model_with_attribute
     expect(subject).to be_new_record
 
     # change the security_answer_digest to verify the test
@@ -57,7 +57,7 @@ describe TestModelWithAttribute do
   end
 
   it 'should not require security answer digest on update' do
-    subject = FactoryGirl.build :test_model_with_attribute
+    subject = FactoryBot.build :test_model_with_attribute
     expect(subject).to be_new_record
 
     subject.save!
@@ -79,7 +79,7 @@ describe TestModelWithAttribute do
 
   describe "#security_answer=" do
     it 'should set the security answer and save it encrypted' do
-      tmwa = FactoryGirl.create :test_model_with_attribute, security_answer: 'old answer', security_answer_confirmation: 'old answer'
+      tmwa = FactoryBot.create :test_model_with_attribute, security_answer: 'old answer', security_answer_confirmation: 'old answer'
       expect(tmwa.security_answer_digest).not_to be_blank
       old_security_answer_digest = tmwa.security_answer_digest
 
@@ -94,12 +94,12 @@ describe TestModelWithAttribute do
 
   describe '#authenticate_security_answer' do
     it 'should return subject if security answer given matches the one stored' do
-      tmwa = FactoryGirl.create :test_model_with_attribute, security_answer: 'some answer', security_answer_confirmation: 'some answer'
+      tmwa = FactoryBot.create :test_model_with_attribute, security_answer: 'some answer', security_answer_confirmation: 'some answer'
       expect(tmwa.authenticate_security_answer('some answer')).to eq(tmwa)
     end
 
     it 'should return false if security answer given does not match the one stored' do
-      tmwa = FactoryGirl.create :test_model_with_attribute, security_answer: 'some answer', security_answer_confirmation: 'some answer'
+      tmwa = FactoryBot.create :test_model_with_attribute, security_answer: 'some answer', security_answer_confirmation: 'some answer'
       expect(tmwa.authenticate_security_answer('some other answer')).to eq(false)
     end
   end
@@ -132,7 +132,7 @@ describe TestModelWithAttributeNoValidation do
   end
 
   it 'should not require security answer digest on create' do
-    subject = FactoryGirl.build :test_model_with_attribute_no_validation
+    subject = FactoryBot.build :test_model_with_attribute_no_validation
     expect(subject).to be_new_record
 
     # change the security_answer_digest to verify the test
@@ -141,7 +141,7 @@ describe TestModelWithAttributeNoValidation do
   end
 
   it 'should not require security answer digest on update' do
-    subject = FactoryGirl.build :test_model_with_attribute_no_validation
+    subject = FactoryBot.build :test_model_with_attribute_no_validation
     expect(subject).to be_new_record
 
     subject.save!
@@ -166,7 +166,7 @@ end
 
 describe TestModelWithAttributeWithCaseSensitive do
   it 'should authenticate even if answer is of different case' do
-    t = FactoryGirl.create :test_model_with_attribute_with_case_sensitive, security_answer: 'Answer', security_answer_confirmation: 'Answer'
+    t = FactoryBot.create :test_model_with_attribute_with_case_sensitive, security_answer: 'Answer', security_answer_confirmation: 'Answer'
 
     expect(t.authenticate_security_answer('answer')).to eq t
   end
@@ -176,7 +176,7 @@ describe TestModelWithAttributeDisableConfirmation do
   it { expect(subject).to_not respond_to(:security_answer_confirmation)  }
   it { expect(subject).to_not respond_to(:security_answer_confirmation=) }
   it 'should allow to create and save without any confirmation on security answer' do
-    t = FactoryGirl.create :test_model_with_attribute_disable_confirmation, security_answer: 'Answer'
+    t = FactoryBot.create :test_model_with_attribute_disable_confirmation, security_answer: 'Answer'
     t.save!
     expect(t.authenticate_security_answer('another answer')).to eq(false)
     expect(t.authenticate_security_answer('Answer')).to eq(t)

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :test_model_with_attribute do
     username 'username'
     password 'password'
