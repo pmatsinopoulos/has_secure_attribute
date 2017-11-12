@@ -19,12 +19,12 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.summary = "Allows an ActiveRecord::Base class to declare an attribute that will be saved one-way encrypted and not clear text"
 
-  s.add_runtime_dependency("activerecord")
-  s.add_runtime_dependency("bcrypt-ruby", "~> 3.1.0")
+  s.add_runtime_dependency("activerecord", "~> 5.1")
+  s.add_runtime_dependency("bcrypt-ruby", "~> 3.1")
 
-  s.add_development_dependency("rake")
-  s.add_development_dependency("rspec")
-  s.add_development_dependency("mysql2")
-  s.add_development_dependency("factory_bot")
-  s.add_development_dependency("database_cleaner")
+  s.add_development_dependency("rake", "~> 12.0")
+  s.add_development_dependency("rspec", "~> 3.0")
+  s.add_development_dependency("mysql2", "~> 0.4.0")
+  s.add_development_dependency("factory_bot", "~> 4.8", ">= 4.8.0")
+  s.add_development_dependency("database_cleaner", "~> 1.6", ">= 1.6.0")
 end

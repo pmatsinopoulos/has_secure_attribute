@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     has_secure_attribute (1.0.0)
-      activerecord
-      bcrypt-ruby (~> 3.1.0)
+      activerecord (~> 5.1)
+      bcrypt-ruby (~> 3.1)
 
 GEM
   remote: https://rubygems.org/
@@ -54,12 +54,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  database_cleaner
-  factory_bot
+  database_cleaner (~> 1.6, >= 1.6.0)
+  factory_bot (~> 4.8, >= 4.8.0)
   has_secure_attribute!
-  mysql2
-  rake
-  rspec
+  mysql2 (~> 0.4.0)
+  rake (~> 12.0)
+  rspec (~> 3.0)
 
 BUNDLED WITH
    1.16.0
